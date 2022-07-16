@@ -1,9 +1,9 @@
-package ru.netology
+
 import java.time.LocalDateTime
 
 fun main() {
     val post1 = Post(
-        1,
+        0,
         1,
         1,
         LocalDateTime.now().nano,
@@ -21,7 +21,7 @@ fun main() {
         false
     )
     val post2 = Post(
-        2,
+        0,
         1,
         1,
         LocalDateTime.now().nano,
@@ -49,7 +49,7 @@ fun main() {
         1,
         1,
         LocalDateTime.now().nano,
-        "Hello, I need help",
+        "I need help",
         false,
         Comments(5, true, false, false, false),
         Likes(1, true, true, true),
@@ -64,7 +64,10 @@ fun main() {
     )
 
     val post1Updated = WallService.update(post1Update)
+    val post2Updated = WallService.update(post1)
+
     println(post1Updated)
+    println(post2Updated)
     println(WallService.posts[0])
 
 }
@@ -109,7 +112,7 @@ data class Reposts(
 )
 
 data class Views(
-    val countViews: Int
+    val countViews: Int,
 )
 
 
