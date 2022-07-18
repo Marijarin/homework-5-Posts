@@ -1,8 +1,8 @@
-
 import java.time.LocalDateTime
 
 fun main() {
-    val post1 = Post(0,
+    val post1 = Post(
+        0,
         1,
         1,
         null,
@@ -27,8 +27,14 @@ fun main() {
         isPinned = true,
         markedAsAds = false,
         isFavourite = false,
-        donut = Donut(false, 0, "empty place", true, "all" ),
-        postponedId = null
+        donut = Donut(false, 0, "empty place", true, "all"),
+        postponedId = null,
+        arrayOf(
+            PhotoAttachment(
+                "photo",
+                Photo(1, 2, 1, 1, "Morning", LocalDateTime.now().nano, 500, 300)
+            )
+        )
     )
     val post2 = Post(
         0,
@@ -56,8 +62,14 @@ fun main() {
         isPinned = false,
         markedAsAds = false,
         isFavourite = true,
-        donut = Donut(false, 0, "empty place", true, "all" ),
-        postponedId = null
+        donut = Donut(false, 0, "empty place", true, "all"),
+        postponedId = null,
+        arrayOf(
+            AudioAttachment(
+                "audio",
+                Audio(1, 1, "Various artists", "Lullaby", 300, "https://...")
+            )
+        )
 
     )
 
@@ -92,8 +104,14 @@ fun main() {
         isPinned = true,
         markedAsAds = false,
         isFavourite = false,
-        donut = Donut(false, 0, "empty place", true, "all" ),
-        postponedId = null
+        donut = Donut(false, 0, "empty place", true, "all"),
+        postponedId = null,
+        attachments = arrayOf(
+            PhotoAttachment(
+                "photo",
+                Photo(1, 2, 1, 1, "Morning", LocalDateTime.now().nano, 500, 300)
+            )
+        )
     )
 
     val post1Updated = WallService.update(post1Update)
@@ -132,7 +150,8 @@ data class Post(
     val markedAsAds: Boolean,
     val isFavourite: Boolean,
     val donut: Donut,
-    val postponedId: Int?
+    val postponedId: Int?,
+    val attachments: Array<Attachment>?,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -197,11 +216,12 @@ data class Comments(
     val canClose: Boolean,
     val canOpen: Boolean,
 )
+
 data class Copyright(
     val id: Int,
     val link: String,
     val name: String,
-    val type: String
+    val type: String,
 )
 
 data class Likes(
@@ -219,22 +239,25 @@ data class Reposts(
 data class Views(
     val countViews: Int,
 )
+
 data class Postsource(
     val type: String,
     val platform: String,
     val data: String,
-    val url: String
+    val url: String,
 )
+
 data class Geo(
     val type: String,
-    val coordinates: String
-    )
+    val coordinates: String,
+)
+
 data class Donut(
     val isDonut: Boolean,
     val paidDuration: Int,
     val placeholder: String?,
     val canPublishFreeCopy: Boolean,
-    val editMode: String
+    val editMode: String,
 )
 
 object WallService {

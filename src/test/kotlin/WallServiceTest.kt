@@ -1,4 +1,3 @@
-
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -34,9 +33,9 @@ class WallServiceTest {
             isPinned = true,
             markedAsAds = false,
             isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all" ),
-            postponedId = null
-
+            donut = Donut(false, 0, "empty place", true, "all"),
+            postponedId = null,
+            null
         )
         val post2 = Post(
             0,
@@ -64,8 +63,24 @@ class WallServiceTest {
             isPinned = true,
             markedAsAds = false,
             isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all" ),
-            postponedId = null
+            donut = Donut(false, 0, "empty place", true, "all"),
+            postponedId = null,
+            arrayOf(
+                NoteAttachment(
+                    "note",
+                    Note(
+                        2,
+                        1,
+                        "Wow",
+                        "I found it, when came back home",
+                        LocalDateTime.now().nano,
+                        12,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                )
+            )
 
         )
         val post3 = Post(
@@ -94,9 +109,30 @@ class WallServiceTest {
             isPinned = true,
             markedAsAds = false,
             isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all" ),
-            postponedId = null
-
+            donut = Donut(false, 0, "empty place", true, "all"),
+            postponedId = null,
+            arrayOf(
+                NoteAttachment(
+                    "note",
+                    Note(
+                        2,
+                        1,
+                        "Wow",
+                        "I found it, when came back home",
+                        LocalDateTime.now().nano,
+                        12,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                ),
+                PhotoAttachment(
+                    "photo",
+                    Photo(
+                        1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
+                    )
+                )
+            )
         )
         val service = WallService
         service.add(post1)
@@ -130,7 +166,8 @@ class WallServiceTest {
             markedAsAds = false,
             isFavourite = false,
             donut = Donut(false, 0, "empty place", true, "all" ),
-            postponedId = null
+            postponedId = null,
+            null
             )*/
             if (service.posts[i].id == 0) {
                 result = false
@@ -172,9 +209,30 @@ class WallServiceTest {
                 isPinned = true,
                 markedAsAds = false,
                 isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all" ),
-                postponedId = null
-
+                donut = Donut(false, 0, "empty place", true, "all"),
+                postponedId = null,
+                arrayOf(
+                    NoteAttachment(
+                        "note",
+                        Note(
+                            2,
+                            1,
+                            "Wow",
+                            "I found it, when came back home",
+                            LocalDateTime.now().nano,
+                            12,
+                            "https://...",
+                            arrayOf("firstProperty", "secondProperty"),
+                            canComment = true
+                        )
+                    ),
+                    PhotoAttachment(
+                        "photo",
+                        Photo(
+                            1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
+                        )
+                    )
+                )
             )
         )
         service.add(
@@ -204,9 +262,9 @@ class WallServiceTest {
                 isPinned = true,
                 markedAsAds = false,
                 isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all" ),
-                postponedId = null
-
+                donut = Donut(false, 0, "empty place", true, "all"),
+                postponedId = null,
+                null
             )
         )
         service.add(
@@ -236,8 +294,22 @@ class WallServiceTest {
                 isPinned = true,
                 markedAsAds = false,
                 isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all" ),
-                postponedId = null
+                donut = Donut(false, 0, "empty place", true, "all"),
+                postponedId = null,
+                arrayOf(
+                    DocumentAttachment(
+                        "document",
+                        Document(
+                            1,
+                            1,
+                            "Some facts",
+                            100,
+                            "pdf",
+                            "https://...",
+                            LocalDateTime.now().nano
+                        )
+                    )
+                )
 
             )
         )
@@ -268,8 +340,30 @@ class WallServiceTest {
             isPinned = true,
             markedAsAds = false,
             isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all" ),
-            postponedId = null
+            donut = Donut(false, 0, "empty place", true, "all"),
+            postponedId = null,
+            arrayOf(
+                NoteAttachment(
+                    "note",
+                    Note(
+                        2,
+                        1,
+                        "New vibes",
+                        "I am starting",
+                        LocalDateTime.now().nano,
+                        8,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                ),
+                PhotoAttachment(
+                    "photo",
+                    Photo(
+                        1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
+                    )
+                )
+            )
         )
 
 
@@ -311,8 +405,32 @@ class WallServiceTest {
                 isPinned = true,
                 markedAsAds = false,
                 isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all" ),
-                postponedId = null
+                donut = Donut(false, 0, "empty place", true, "all"),
+                postponedId = null,
+                arrayOf(
+                    PollAttachment(
+                        "poll",
+                        Poll(
+                            10,
+                            11,
+                            LocalDateTime.now().nano,
+                            "Can you?",
+                            1,
+                            arrayOf(Answer(2, "Yes", 1, 1.0)),
+                            false,
+                            multiple = true,
+                            0,
+                            closed = false,
+                            canEdit = true,
+                            canVote = true,
+                            true,
+                            canShare = true,
+                            1,
+                            Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90),
+                            arrayOf(3, 4, 5)
+                        )
+                    )
+                )
             )
         )
         service.add(
@@ -342,9 +460,9 @@ class WallServiceTest {
                 isPinned = true,
                 markedAsAds = false,
                 isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all" ),
-                postponedId = null
-
+                donut = Donut(false, 0, "empty place", true, "all"),
+                postponedId = null,
+                null
             )
         )
         service.add(
@@ -374,8 +492,32 @@ class WallServiceTest {
                 isPinned = true,
                 markedAsAds = false,
                 isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all" ),
-                postponedId = null
+                donut = Donut(false, 0, "empty place", true, "all"),
+                postponedId = null,
+                arrayOf(
+                    PollAttachment(
+                        "poll",
+                        Poll(
+                            1,
+                            1,
+                            LocalDateTime.now().nano,
+                            "Can you?",
+                            1,
+                            arrayOf(Answer(2, "Yes", 1, 1.0)),
+                            false,
+                            multiple = true,
+                            0,
+                            closed = false,
+                            canEdit = true,
+                            canVote = true,
+                            true,
+                            canShare = true,
+                            1,
+                            Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90),
+                            arrayOf(3, 4, 5)
+                        )
+                    )
+                )
             )
         )
 
@@ -405,8 +547,28 @@ class WallServiceTest {
             isPinned = true,
             markedAsAds = false,
             isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all" ),
-            postponedId = null
+            donut = Donut(false, 0, "empty place", true, "all"),
+            postponedId = null,
+            arrayOf(
+                PhotoAttachment(
+                    "photo",
+                    Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90)
+                ),
+                NoteAttachment(
+                    "note",
+                    Note(
+                        2,
+                        1,
+                        "Wow",
+                        "I found it, when came back home",
+                        LocalDateTime.now().nano,
+                        12,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                )
+            )
         )
 
 
