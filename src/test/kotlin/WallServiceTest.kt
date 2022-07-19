@@ -67,7 +67,7 @@ class WallServiceTest {
             postponedId = null,
             arrayOf(
                 NoteAttachment(
-                    "note",
+
                     Note(
                         2,
                         1,
@@ -113,7 +113,7 @@ class WallServiceTest {
             postponedId = null,
             arrayOf(
                 NoteAttachment(
-                    "note",
+
                     Note(
                         2,
                         1,
@@ -127,7 +127,7 @@ class WallServiceTest {
                     )
                 ),
                 PhotoAttachment(
-                    "photo",
+
                     Photo(
                         1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
                     )
@@ -213,7 +213,7 @@ class WallServiceTest {
                 postponedId = null,
                 arrayOf(
                     NoteAttachment(
-                        "note",
+
                         Note(
                             2,
                             1,
@@ -227,7 +227,7 @@ class WallServiceTest {
                         )
                     ),
                     PhotoAttachment(
-                        "photo",
+
                         Photo(
                             1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
                         )
@@ -298,7 +298,7 @@ class WallServiceTest {
                 postponedId = null,
                 arrayOf(
                     DocumentAttachment(
-                        "document",
+
                         Document(
                             1,
                             1,
@@ -344,7 +344,7 @@ class WallServiceTest {
             postponedId = null,
             arrayOf(
                 NoteAttachment(
-                    "note",
+
                     Note(
                         2,
                         1,
@@ -358,7 +358,7 @@ class WallServiceTest {
                     )
                 ),
                 PhotoAttachment(
-                    "photo",
+
                     Photo(
                         1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
                     )
@@ -409,7 +409,7 @@ class WallServiceTest {
                 postponedId = null,
                 arrayOf(
                     PollAttachment(
-                        "poll",
+
                         Poll(
                             10,
                             11,
@@ -496,7 +496,7 @@ class WallServiceTest {
                 postponedId = null,
                 arrayOf(
                     PollAttachment(
-                        "poll",
+
                         Poll(
                             1,
                             1,
@@ -551,11 +551,11 @@ class WallServiceTest {
             postponedId = null,
             arrayOf(
                 PhotoAttachment(
-                    "photo",
+
                     Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90)
                 ),
                 NoteAttachment(
-                    "note",
+
                     Note(
                         2,
                         1,
@@ -566,6 +566,28 @@ class WallServiceTest {
                         "https://...",
                         arrayOf("firstProperty", "secondProperty"),
                         canComment = true
+                    )
+                ),
+                PollAttachment(
+
+                    Poll(
+                        10,
+                        11,
+                        LocalDateTime.now().nano,
+                        "Can you?",
+                        1,
+                        arrayOf(Answer(2, "Yes", 1, 1.0)),
+                        false,
+                        multiple = true,
+                        0,
+                        closed = false,
+                        canEdit = true,
+                        canVote = true,
+                        true,
+                        canShare = true,
+                        1,
+                        Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90),
+                        arrayOf(3, 4, 5)
                     )
                 )
             )

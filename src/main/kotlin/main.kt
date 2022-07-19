@@ -31,7 +31,7 @@ fun main() {
         postponedId = null,
         arrayOf(
             PhotoAttachment(
-                "photo",
+
                 Photo(1, 2, 1, 1, "Morning", LocalDateTime.now().nano, 500, 300)
             )
         )
@@ -66,7 +66,7 @@ fun main() {
         postponedId = null,
         arrayOf(
             AudioAttachment(
-                "audio",
+
                 Audio(1, 1, "Various artists", "Lullaby", 300, "https://...")
             )
         )
@@ -107,9 +107,31 @@ fun main() {
         donut = Donut(false, 0, "empty place", true, "all"),
         postponedId = null,
         attachments = arrayOf(
-            PhotoAttachment(
-                "photo",
-                Photo(1, 2, 1, 1, "Morning", LocalDateTime.now().nano, 500, 300)
+            PollAttachment(
+
+                Poll(
+                    10,
+                    11,
+                    LocalDateTime.now().nano,
+                    "Can you?",
+                    1,
+                    arrayOf(Answer(2, "Yes", 1, 1.0)),
+                    false,
+                    multiple = true,
+                    0,
+                    closed = false,
+                    canEdit = true,
+                    canVote = true,
+                    true,
+                    canShare = true,
+                    1,
+                    Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90),
+                    arrayOf(3, 4, 5)
+                )
+            ),
+            AudioAttachment(
+
+                Audio(1, 1, "Various artists", "Lullaby", 300, "https://...")
             )
         )
     )

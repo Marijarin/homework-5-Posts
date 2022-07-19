@@ -1,13 +1,6 @@
-/*interface Attachment {
-    val type: String
-}
+sealed class Attachment(val type: String)
 
-class AudioAttachment(
-    override val type: String,
-    val audio: Audio,
-) : Attachment {
-    // TODO
-}
+data class AudioAttachment (val audio: Audio) : Attachment ("audio")
 
 data class Audio(
     val id: Int,
@@ -18,12 +11,7 @@ data class Audio(
     val url: String,
 )
 
-class DocumentAttachment(
-    override val type: String,
-    val document: Document,
-) : Attachment {
-    //TODO
-}
+data class DocumentAttachment(val document: Document) : Attachment ("document")
 
 data class Document(
     val id: Int,
@@ -35,12 +23,7 @@ data class Document(
     val date: Int,
 )
 
-class NoteAttachment(
-    override val type: String,
-    val note: Note,
-) : Attachment {
-    //TODO
-}
+data class NoteAttachment(val note: Note) : Attachment ("note")
 
 data class Note(
     val id: Int,
@@ -86,12 +69,7 @@ data class Note(
     }
 }
 
-class PollAttachment(
-    override val type: String,
-    val poll: Poll,
-) : Attachment {
-    //TODO
-}
+data class PollAttachment (val poll: Poll): Attachment ("poll")
 
 data class Poll(
     val id: Int,
@@ -124,6 +102,17 @@ data class Poll(
         if (question != other.question) return false
         if (votes != other.votes) return false
         if (!answers.contentEquals(other.answers)) return false
+        if (anonymous != other.anonymous) return false
+        if (multiple != other.multiple) return false
+        if (endDate != other.endDate) return false
+        if (closed != other.closed) return false
+        if (canEdit != other.canEdit) return false
+        if (canVote != other.canVote) return false
+        if (canReport != other.canReport) return false
+        if (canShare != other.canShare) return false
+        if (authorId != other.authorId) return false
+        if (photo != other.photo) return false
+        if (!friends.contentEquals(other.friends)) return false
 
         return true
     }
@@ -135,6 +124,17 @@ data class Poll(
         result = 31 * result + question.hashCode()
         result = 31 * result + votes
         result = 31 * result + answers.contentHashCode()
+        result = 31 * result + anonymous.hashCode()
+        result = 31 * result + multiple.hashCode()
+        result = 31 * result + endDate
+        result = 31 * result + closed.hashCode()
+        result = 31 * result + canEdit.hashCode()
+        result = 31 * result + canVote.hashCode()
+        result = 31 * result + canReport.hashCode()
+        result = 31 * result + canShare.hashCode()
+        result = 31 * result + authorId
+        result = 31 * result + photo.hashCode()
+        result = 31 * result + friends.contentHashCode()
         return result
     }
 }
@@ -147,12 +147,7 @@ data class Answer(
     val rate: Double
 )
 
-class PhotoAttachment(
-    override val type: String,
-    val photo: Photo,
-) : Attachment {
-    //TODO
-}
+data class PhotoAttachment (val photo: Photo) : Attachment ("photo")
 
 data class Photo(
     val id: Int,
@@ -162,5 +157,6 @@ data class Photo(
     val text: String,
     val date: Int,
     val width: Int,
-    val height: Int,
-)*/
+    val height: Int
+)
+
