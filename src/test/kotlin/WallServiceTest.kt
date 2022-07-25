@@ -1,4 +1,4 @@
-
+package ru.netology
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -9,84 +9,85 @@ class WallServiceTest {
     @Test
     fun addIdAddedNotZero() {
         val post1 = Post(
-            0,
-            1,
-            1,
-            LocalDateTime.now().nano,
-            "Hello, what's up?",
-            false,
-            Comments(2, true, true, true, true),
-            Likes(2, true, true, true),
-            Reposts(0, false),
-            Views(3),
-            true,
-            true,
-            true,
-            false,
-            false,
-            false
+            text = "Hello, what's up?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
+            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+            reposts = Reposts(1, false),
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+           attachments = emptyArray()
         )
         val post2 = Post(
-            0,
-            10,
-            10,
-            LocalDateTime.now().nano,
-            "My favourite breakfast is...",
-            false,
-            Comments(1, true, true, true, true),
-            Likes(1, true, true, true),
-            Reposts(0, false),
-            Views(5),
-            true,
-            true,
-            true,
-            false,
-            false,
-            false
+            text = "Can you?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
+            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+            reposts = Reposts(1, false),
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
+                NoteAttachment(
+
+                    Note(
+                        2,
+                        1,
+                        "Wow",
+                        "I found it, when came back home",
+                        LocalDateTime.now().nano,
+                        12,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                )
+            )
+
         )
         val post3 = Post(
-            0,
-            5,
-            6,
-            LocalDateTime.now().nano,
-            "Here is my new car",
-            false,
-            Comments(10, true, true, true, true),
-            Likes(10, true, true, true),
-            Reposts(0, false),
-            Views(10),
-            true,
-            true,
-            true,
-            false,
-            false,
-            false
+            text = "What's up?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
+            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+            reposts = Reposts(1, false),
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
+                NoteAttachment(
+
+                    Note(
+                        2,
+                        1,
+                        "Wow",
+                        "I found it, when came back home",
+                        LocalDateTime.now().nano,
+                        12,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                ),
+                PhotoAttachment(
+
+                    Photo(
+                        1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
+                    )
+                )
+            )
         )
         val service = WallService
         service.add(post1)
         service.add(post2)
         service.add(post3)
         var result = true
-        for (i in 0..service.posts.size - 1) {
-            /*service.posts[i]= Post(
-                0,
-                1,
-                1,
-                LocalDateTime.now().nano,
-                "Here is my new car",
-                false,
-                Comments(10, true, true, true, true),
-                Likes(10, true, true, true),
-                Reposts(0, false),
-                Views(10),
-                true,
-                true,
-                true,
-                false,
-                false,
-                false
-            )*/
-            if (service.posts[i].id == 0) {
+        for (i in 0 until service.getSize()) {
+            if (service.getId(i) == 0) {
                 result = false
             }
         }
@@ -101,82 +102,114 @@ class WallServiceTest {
 
         service.add(
             Post(
-                0,
-                1,
-                1,
-                LocalDateTime.now().nano,
-                "Hello, what's up?",
-                false,
-                Comments(2, true, true, true, true),
-                Likes(2, true, true, true),
-                Reposts(0, false),
-                Views(3),
-                true,
-                true,
-                true,
-                false,
-                false,
-                false
+                text = "Hell, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
+                    NoteAttachment(
+
+                        Note(
+                            2,
+                            1,
+                            "Wow",
+                            "I found it, when came back home",
+                            LocalDateTime.now().nano,
+                            12,
+                            "https://...",
+                            arrayOf("firstProperty", "secondProperty"),
+                            canComment = true
+                        )
+                    ),
+                    PhotoAttachment(
+
+                        Photo(
+                            1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
+                        )
+                    )
+                )
             )
         )
         service.add(
             Post(
-                0,
-                2,
-                2,
-                LocalDateTime.now().nano,
-                "Where are you guys?",
-                true,
-                Comments(12, true, true, true, true),
-                Likes(12, true, true, true),
-                Reposts(1, true),
-                Views(22),
-                true,
-                true,
-                true,
-                true,
-                true,
-                true
+                text = "Hello, wh?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = emptyArray()
             )
         )
         service.add(
             Post(
-                0,
-                10,
-                10,
-                LocalDateTime.now().nano,
-                "Hello, what's up?",
-                false,
-                Comments(10, false, false, false, false),
-                Likes(10, false, false, false),
-                Reposts(10, false),
-                Views(10),
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
+                text = "Hello?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
+                    DocumentAttachment(
+
+                        Document(
+                            1,
+                            1,
+                            "Some facts",
+                            100,
+                            "pdf",
+                            "https://...",
+                            LocalDateTime.now().nano
+                        )
+                    )
+                )
+
             )
         )
 
         val update = Post(
-            0,
-            1,
-            1,
-            LocalDateTime.now().nano,
-            "Hello, what's up?",
-            false,
-            Comments(2, true, true, true, true),
-            Likes(2, true, true, true),
-            Reposts(0, false),
-            Views(3),
-            true,
-            true,
-            true,
-            false,
-            false,
-            false
+            text = "Hello, what's up?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
+            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+            reposts = Reposts(1, false),
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
+                NoteAttachment(
+
+                    Note(
+                        2,
+                        1,
+                        "New vibes",
+                        "I am starting",
+                        LocalDateTime.now().nano,
+                        8,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                ),
+                PhotoAttachment(
+
+                    Photo(
+                        1, 2, 1, 1, " ", LocalDateTime.now().nano, 500, 300
+                    )
+                )
+            )
         )
 
 
@@ -193,82 +226,146 @@ class WallServiceTest {
 
         service.add(
             Post(
-                0,
-                1,
-                1,
-                LocalDateTime.now().nano,
-                "Hello, what's up?",
-                false,
-                Comments(2, true, true, true, true),
-                Likes(2, true, true, true),
-                Reposts(0, false),
-                Views(3),
-                true,
-                true,
-                true,
-                false,
-                false,
-                false
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
+                    PollAttachment(
+
+                        Poll(
+                            10,
+                            11,
+                            LocalDateTime.now().nano,
+                            "Can you?",
+                            1,
+                            arrayOf(Answer(2, "Yes", 1, 1.0)),
+                            false,
+                            multiple = true,
+                            0,
+                            closed = false,
+                            canEdit = true,
+                            canVote = true,
+                            true,
+                            canShare = true,
+                            1,
+                            Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90),
+                            arrayOf(3, 4, 5)
+                        )
+                    )
+                )
             )
         )
         service.add(
             Post(
-                0,
-                2,
-                2,
-                LocalDateTime.now().nano,
-                "Where are you guys?",
-                true,
-                Comments(12, true, true, true, true),
-                Likes(12, true, true, true),
-                Reposts(1, true),
-                Views(22),
-                true,
-                true,
-                true,
-                true,
-                true,
-                true
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = emptyArray()
             )
         )
         service.add(
             Post(
-                0,
-                10,
-                10,
-                LocalDateTime.now().nano,
-                "Hello, what's up?",
-                false,
-                Comments(10, false, false, false, false),
-                Likes(10, false, false, false),
-                Reposts(10, false),
-                Views(10),
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
+                    PollAttachment(
+
+                        Poll(
+                            1,
+                            1,
+                            LocalDateTime.now().nano,
+                            "Can you?",
+                            1,
+                            arrayOf(Answer(2, "Yes", 1, 1.0)),
+                            false,
+                            multiple = true,
+                            0,
+                            closed = false,
+                            canEdit = true,
+                            canVote = true,
+                            true,
+                            canShare = true,
+                            1,
+                            Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90),
+                            arrayOf(3, 4, 5)
+                        )
+                    )
+                )
             )
         )
 
         val update = Post(
-            service.posts[0].id,
-            15,
-            12,
-            LocalDateTime.now().nano,
-            "It's my new bag",
-            false,
-            Comments(0, true, true, true, true),
-            Likes(0, true, true, true),
-            Reposts(0, false),
-            Views(3),
-            true,
-            true,
-            true,
-            false,
-            false,
-            false
+            id = service.getId(0),
+            text = "Hello, what's up?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
+            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+            reposts = Reposts(1, false),
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
+                PhotoAttachment(
+
+                    Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90)
+                ),
+                NoteAttachment(
+
+                    Note(
+                        2,
+                        1,
+                        "Wow",
+                        "I found it, when came back home",
+                        LocalDateTime.now().nano,
+                        12,
+                        "https://...",
+                        arrayOf("firstProperty", "secondProperty"),
+                        canComment = true
+                    )
+                ),
+                PollAttachment(
+
+                    Poll(
+                        10,
+                        11,
+                        LocalDateTime.now().nano,
+                        "Can you?",
+                        1,
+                        arrayOf(Answer(2, "Yes", 1, 1.0)),
+                        false,
+                        multiple = true,
+                        0,
+                        closed = false,
+                        canEdit = true,
+                        canVote = true,
+                        true,
+                        canShare = true,
+                        1,
+                        Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90),
+                        arrayOf(3, 4, 5)
+                    )
+                )
+            )
         )
 
 
