@@ -1,3 +1,4 @@
+package ru.netology
 sealed class Attachment(val type: String)
 
 data class AudioAttachment (val audio: Audio) : Attachment ("audio")

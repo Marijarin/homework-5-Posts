@@ -1,3 +1,4 @@
+package ru.netology
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -8,64 +9,28 @@ class WallServiceTest {
     @Test
     fun addIdAddedNotZero() {
         val post1 = Post(
-            0,
-            1,
-            1,
-            null,
-            LocalDateTime.now().nano,
-            "Hello",
-            null,
-            null,
-            false,
-            Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-            Copyright(0, "https://...", "post", "post"),
-            Likes(5, userLikes = true, canLike = true, canPublish = true),
-            Reposts(1, false),
-            Views(5),
-            "post",
-            null,
-            Geo("place1", "coordinates1"),
-            null,
-            null,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = false,
-            isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all"),
-            postponedId = null,
-            null
-        )
-        val post2 = Post(
-            0,
-            1,
-            1,
-            null,
-            LocalDateTime.now().nano,
-            "Can you guess?",
-            null,
-            null,
-            false,
-            comments = Comments(10, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-            copyright = Copyright(0, "https://...", "post", "post"),
+            text = "Hello, what's up?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
             likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
             reposts = Reposts(1, false),
-            views = Views(15),
-            postType = "post",
-            postSource = null,
-            geo = Geo("place1", "coordinates1"),
-            signerId = null,
-            copyHistory = null,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = false,
-            isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all"),
-            postponedId = null,
-            arrayOf(
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+           attachments = emptyArray()
+        )
+        val post2 = Post(
+            text = "Can you?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
+            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+            reposts = Reposts(1, false),
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
                 NoteAttachment(
 
                     Note(
@@ -84,34 +49,16 @@ class WallServiceTest {
 
         )
         val post3 = Post(
-            0,
-            1,
-            1,
-            null,
-            LocalDateTime.now().nano,
-            "My new car",
-            null,
-            null,
-            false,
-            comments = Comments(12, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-            copyright = Copyright(0, "https://...", "post", "post"),
+            text = "What's up?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
             likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
             reposts = Reposts(1, false),
-            views = Views(20),
-            postType = "post",
-            postSource = null,
-            geo = Geo("place2", "coordinates2"),
-            signerId = null,
-            copyHistory = null,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = false,
-            isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all"),
-            postponedId = null,
-            arrayOf(
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
                 NoteAttachment(
 
                     Note(
@@ -139,37 +86,8 @@ class WallServiceTest {
         service.add(post2)
         service.add(post3)
         var result = true
-        for (i in 0 until service.posts.size) {
-            /*service.posts[i]= Post(0,
-            1,
-            1,
-            null,
-            LocalDateTime.now().nano,
-            "My new car",
-            null,
-            null,
-            false,
-            comments = Comments(12, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-            copyright = Copyright(0, "https://...", "post", "post"),
-            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
-            reposts = Reposts(1, false),
-            views = Views(20),
-            postType = "post",
-            postSource = null,
-            geo = Geo("place2", "coordinates2"),
-            signerId = null,
-            copyHistory = null,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = false,
-            isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all" ),
-            postponedId = null,
-            null
-            )*/
-            if (service.posts[i].id == 0) {
+        for (i in 0 until service.getSize()) {
+            if (service.getId(i) == 0) {
                 result = false
             }
         }
@@ -184,34 +102,16 @@ class WallServiceTest {
 
         service.add(
             Post(
-                0,
-                1,
-                1,
-                null,
-                LocalDateTime.now().nano,
-                "Hello",
-                null,
-                null,
-                false,
-                comments = Comments(0, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-                copyright = Copyright(0, "https://...", "post", "post"),
-                likes = Likes(0, userLikes = true, canLike = true, canPublish = true),
-                reposts = Reposts(0, false),
-                views = Views(0),
-                postType = "post",
-                postSource = null,
-                geo = Geo("place1", "coordinates1"),
-                signerId = null,
-                copyHistory = null,
-                canPin = true,
-                canDelete = true,
-                canEdit = true,
-                isPinned = true,
-                markedAsAds = false,
-                isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all"),
-                postponedId = null,
-                arrayOf(
+                text = "Hell, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
                     NoteAttachment(
 
                         Note(
@@ -237,66 +137,30 @@ class WallServiceTest {
         )
         service.add(
             Post(
-                0,
-                1,
-                1,
-                null,
-                LocalDateTime.now().nano,
-                "I will be there next week",
-                null,
-                null,
-                false,
-                comments = Comments(100, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-                copyright = Copyright(0, "https://...", "post", "post"),
+                text = "Hello, wh?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
                 likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
                 reposts = Reposts(1, false),
-                views = Views(500),
-                postType = "post",
-                postSource = null,
-                geo = Geo("place1", "coordinates1"),
-                signerId = null,
-                copyHistory = null,
-                canPin = true,
-                canDelete = true,
-                canEdit = true,
-                isPinned = true,
-                markedAsAds = false,
-                isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all"),
-                postponedId = null,
-                null
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = emptyArray()
             )
         )
         service.add(
             Post(
-                0,
-                1,
-                1,
-                null,
-                LocalDateTime.now().nano,
-                "How are you?",
-                null,
-                null,
-                false,
-                Comments(10, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-                Copyright(0, "https://...", "post", "post"),
-                Likes(10, userLikes = true, canLike = true, canPublish = true),
-                Reposts(0, false),
-                Views(10),
-                "post",
-                null,
-                Geo("place1", "coordinates1"),
-                null,
-                null,
-                canPin = true,
-                canDelete = true,
-                canEdit = true,
-                isPinned = true,
-                markedAsAds = false,
-                isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all"),
-                postponedId = null,
-                arrayOf(
+                text = "Hello?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
                     DocumentAttachment(
 
                         Document(
@@ -315,34 +179,16 @@ class WallServiceTest {
         )
 
         val update = Post(
-            0,
-            1,
-            1,
-            null,
-            LocalDateTime.now().nano,
-            "Hello",
-            null,
-            null,
-            false,
-            comments = Comments(0, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-            copyright = Copyright(0, "https://...", "post", "post"),
-            likes = Likes(0, userLikes = true, canLike = true, canPublish = true),
-            reposts = Reposts(0, false),
-            views = Views(0),
-            postType = "post",
-            postSource = null,
-            geo = Geo("place1", "coordinates1"),
-            signerId = null,
-            copyHistory = null,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = false,
-            isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all"),
-            postponedId = null,
-            arrayOf(
+            text = "Hello, what's up?",
+            comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+            copyright = Copyright(),
+            likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+            reposts = Reposts(1, false),
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
                 NoteAttachment(
 
                     Note(
@@ -380,34 +226,16 @@ class WallServiceTest {
 
         service.add(
             Post(
-                0,
-                1,
-                1,
-                null,
-                LocalDateTime.now().nano,
-                "It's my friend",
-                null,
-                null,
-                false,
-                Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-                Copyright(0, "https://...", "post", "post"),
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
                 likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
                 reposts = Reposts(1, false),
-                views = Views(5),
-                postType = "post",
-                postSource = null,
-                geo = Geo("place1", "coordinates1"),
-                signerId = null,
-                copyHistory = null,
-                canPin = true,
-                canDelete = true,
-                canEdit = true,
-                isPinned = true,
-                markedAsAds = false,
-                isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all"),
-                postponedId = null,
-                arrayOf(
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
                     PollAttachment(
 
                         Poll(
@@ -435,66 +263,30 @@ class WallServiceTest {
         )
         service.add(
             Post(
-                0,
-                1,
-                1,
-                null,
-                LocalDateTime.now().nano,
-                "Hello",
-                null,
-                null,
-                false,
-                Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-                Copyright(0, "https://...", "post", "post"),
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
                 likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
                 reposts = Reposts(1, false),
-                views = Views(5),
-                postType = "post",
-                postSource = null,
-                geo = Geo("place2", "coordinates2"),
-                signerId = null,
-                copyHistory = null,
-                canPin = true,
-                canDelete = true,
-                canEdit = true,
-                isPinned = true,
-                markedAsAds = false,
-                isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all"),
-                postponedId = null,
-                null
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = emptyArray()
             )
         )
         service.add(
             Post(
-                0,
-                1,
-                1,
-                null,
-                LocalDateTime.now().nano,
-                "Hello",
-                null,
-                null,
-                false,
-                Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-                Copyright(0, "https://...", "post", "post"),
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
                 likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
                 reposts = Reposts(1, false),
-                views = Views(5),
-                postType = "post",
-                postSource = null,
-                geo = Geo("place1", "coordinates1"),
-                signerId = null,
-                copyHistory = null,
-                canPin = true,
-                canDelete = true,
-                canEdit = true,
-                isPinned = true,
-                markedAsAds = false,
-                isFavourite = false,
-                donut = Donut(false, 0, "empty place", true, "all"),
-                postponedId = null,
-                arrayOf(
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
                     PollAttachment(
 
                         Poll(
@@ -522,34 +314,17 @@ class WallServiceTest {
         )
 
         val update = Post(
-            service.posts[0].id,
-            1,
-            1,
-            null,
-            LocalDateTime.now().nano,
-            "Hello",
-            null,
-            null,
-            false,
+            id = service.getId(0),
+            text = "Hello, what's up?",
             comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
-            copyright = Copyright(0, "https://...", "post", "post"),
+            copyright = Copyright(),
             likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
             reposts = Reposts(1, false),
-            views = Views(5),
-            postType = "post",
-            postSource = null,
-            geo = Geo("place1", "coordinates1"),
-            signerId = null,
-            copyHistory = null,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = false,
-            isFavourite = false,
-            donut = Donut(false, 0, "empty place", true, "all"),
-            postponedId = null,
-            arrayOf(
+            views = Views(),
+            postSource = PostSource(),
+            geo = Geo(),
+            donut = Donut(),
+            attachments = arrayOf(
                 PhotoAttachment(
 
                     Photo(3, 5, 1, 1, " ", LocalDateTime.now().nano, 100, 90)
