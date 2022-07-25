@@ -101,5 +101,14 @@ fun main() {
     println(post2Updated)
     println(post1Update)
 
+    val newComment = WallService.createComment(
+        WallService.getId(0),
+        Comment(text = "This is the first comment here"))
+    println(newComment)
+    /*val nonExistingComment = WallService.createComment(0, Comment())
+    println(nonExistingComment)*/
+
 }
+
+class PostNotFoundException(message: String) : RuntimeException(message)
 

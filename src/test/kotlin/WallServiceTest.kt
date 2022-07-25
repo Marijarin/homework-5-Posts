@@ -1,4 +1,5 @@
 package ru.netology
+
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -18,7 +19,7 @@ class WallServiceTest {
             postSource = PostSource(),
             geo = Geo(),
             donut = Donut(),
-           attachments = emptyArray()
+            attachments = emptyArray()
         )
         val post2 = Post(
             text = "Can you?",
@@ -95,7 +96,6 @@ class WallServiceTest {
     }
 
     @Test
-
     fun updateExistingWithDifferentId() {
 
         val service = WallService
@@ -372,5 +372,113 @@ class WallServiceTest {
         val result = service.update(update)
 
         assertTrue(result)
+    }
+
+    @Test
+    fun shouldNotThrow() {
+        val service = WallService
+        service.add(
+            Post(
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
+                    PollAttachment(
+                        Poll(
+                            1,
+                            1,
+                            LocalDateTime.now().nano,
+                            "Can you?",
+                            1,
+                            arrayOf(Answer(2, "Yes", 1, 1.0)),
+                            false,
+                            multiple = true,
+                            0,
+                            closed = false,
+                            canEdit = true,
+                            canVote = true,
+                            true,
+                            canShare = true,
+                            1,
+                            Photo(
+                                3,
+                                5,
+                                1,
+                                1,
+                                " ",
+                                LocalDateTime.now().nano,
+                                100,
+                                90
+                            ),
+                            arrayOf(3, 4, 5)
+                        )
+                    )
+                )
+            )
+        )
+        val commentFirst = Comment(text = "A test comment")
+        val result = service.createComment(service.getId(0), commentFirst)
+        assertEquals(commentFirst, result)
+        //assertEquals(Comment(text = "A test comment"), result) //For failed test
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        val service = WallService
+        service.add(
+            Post(
+                text = "Hello, what's up?",
+                comments = Comments(1, canPost = true, groupsCanPost = true, canClose = true, canOpen = true),
+                copyright = Copyright(),
+                likes = Likes(5, userLikes = true, canLike = true, canPublish = true),
+                reposts = Reposts(1, false),
+                views = Views(),
+                postSource = PostSource(),
+                geo = Geo(),
+                donut = Donut(),
+                attachments = arrayOf(
+                    PollAttachment(
+                        Poll(
+                            1,
+                            1,
+                            LocalDateTime.now().nano,
+                            "Can you?",
+                            1,
+                            arrayOf(Answer(2, "Yes", 1, 1.0)),
+                            false,
+                            multiple = true,
+                            0,
+                            closed = false,
+                            canEdit = true,
+                            canVote = true,
+                            true,
+                            canShare = true,
+                            1,
+                            Photo(
+                                3,
+                                5,
+                                1,
+                                1,
+                                " ",
+                                LocalDateTime.now().nano,
+                                100,
+                                90
+                            ),
+                            arrayOf(3, 4, 5)
+                        )
+                    )
+                )
+            )
+        )
+        val commentFirst = Comment(text = "A test comment")
+        val result = service.createComment(-1, commentFirst)
+        //val result = service.createComment(service.getId(0), commentFirst) //For failed test
+        assertEquals(commentFirst, result)
     }
 }
