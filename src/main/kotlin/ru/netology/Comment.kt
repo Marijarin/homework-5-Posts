@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 data class Comment(
     val id: Int = -1,
-    val fromId: Int = -1,
+    val fromId: Int = -1, //author's id
     val date: Int = LocalDateTime.now().nano,
     val text: String = "This is the text of a comment",
     val donut: DonutInfo = DonutInfo(),

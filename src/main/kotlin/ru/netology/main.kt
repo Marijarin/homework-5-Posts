@@ -107,8 +107,14 @@ fun main() {
     println(newComment)
     /*val nonExistingComment = WallService.createComment(0, Comment())
     println(nonExistingComment)*/
+    val abuse = WallService.createComment(WallService.getId(0),
+        Comment(text = "This is an example of abuse"))
+    val complaint = WallService.reportAbuseInComment(abuse)
+    println(complaint)
 
 }
 
 class PostNotFoundException(message: String) : RuntimeException(message)
+
+class CommentNotFoundException(message: String) : RuntimeException(message)
 
