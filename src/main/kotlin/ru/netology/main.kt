@@ -78,6 +78,7 @@ fun main() {
     println(noteService.deleteComment(noteService.commentIds[0]))
     println(noteService.restoreComment(noteService.commentIds[0]))
     println(noteService.get())
+    println(noteService.comments.toString())
     println(noteService.getComments(note1Added.id, note1Added.ownerId, true))
     println(post1Added)
     println(post2Added)

@@ -20,7 +20,7 @@ class NoteService : CrudService<Note, CommentToNote>() {
     }
 
     override fun getComments(noteIdent: Int, ownerId: Int, sort: Boolean, offset: Int, count: Int): String {
-             comments.retainAll { CommentToNote().noteId == -1 }
+             
         return super.getComments(noteIdent, ownerId, sort, offset, count)
     }
 
