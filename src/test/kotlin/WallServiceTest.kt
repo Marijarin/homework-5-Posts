@@ -213,7 +213,7 @@ class WallServiceTest {
         )
 
 
-        val result = service.update(update)
+        val result = service.update(update,-1)
 
         assertFalse(result)
     }
@@ -369,7 +369,7 @@ class WallServiceTest {
         )
 
 
-        val result = service.update(update)
+        val result = service.update(update,service.getId(0))
 
         assertTrue(result)
     }

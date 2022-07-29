@@ -27,16 +27,16 @@ data class Document(
 data class NoteAttachment(val note: Note) : Attachment ("note")
 
 data class Note(
-    val id: Int,
-    val ownerId: Int,
-    val title: String,
-    val text: String,
-    val date: Int,
-    val comments: Int,
-    val viewUrl: String,
-    val privacyView: Array<String>,
-    val canComment: Boolean
-) {
+    val id: Int = -1,
+    val ownerId: Int = -1,
+    val title: String = "A note",
+    val text: String = "A text of the note",
+    val date: Int = 0,
+    val comments: Int = 0,
+    val viewUrl: String = "url here",
+    val privacyView: Array<String> = emptyArray(),
+    val canComment: Boolean = true
+)  {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -160,4 +160,5 @@ data class Photo(
     val width: Int,
     val height: Int
 )
+
 
