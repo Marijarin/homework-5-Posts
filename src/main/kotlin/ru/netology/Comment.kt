@@ -12,9 +12,8 @@ data class Comment(
     val replyToComment: Int? = null,
     val attachments: Array<Attachment> = emptyArray(),
     val parentsStack: Array<Int> = emptyArray(),
-    val thread: ThreadOfComments = ThreadOfComments()
-)
-{
+    val thread: ThreadOfComments = ThreadOfComments(),
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -48,7 +47,7 @@ data class Comment(
 
 data class DonutInfo(
     val isDon: Boolean = false,
-    val placeholder: String = "empty place"
+    val placeholder: String = "empty place",
 )
 
 data class ThreadOfComments(
@@ -56,7 +55,7 @@ data class ThreadOfComments(
     val items: Array<Comment> = emptyArray(),
     val canPost: Boolean = true,
     val showReplyAction: Boolean = false,
-    val groupsCanPost: Boolean = false
+    val groupsCanPost: Boolean = false,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -82,4 +81,14 @@ data class ThreadOfComments(
         return result
     }
 }
+
+data class CommentToNote(
+    val noteId: Int = -1,
+    val ownerId: Int = -1,
+    val replyToUser: Int = 0,
+    val message: String = "This is a comment to a note",
+    val guid: Int = 0
+    )
+
+
 
